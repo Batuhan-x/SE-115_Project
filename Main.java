@@ -8,17 +8,64 @@ public class Main {
     static final int COMMS = 5;
     static String[] commodities = {"Gold", "Oil", "Silver", "Wheat", "Copper"};
     static String[] months = {"January","February","March","April","May","June",
-                              "July","August","September","October","November","December"};
-    
+            "July","August","September","October","November","December"};
+    static int[][][] profits = new int[12][28][5];
 
     // ======== REQUIRED METHOD LOAD DATA (Students fill this) ========
     public static void loadData() {
+
+
+
+
+        for (int i = 0; i < months.length; i++) {
+
+            String filename =   "Data_Files/"+months[i]+".txt";
+            Scanner reader = null;
+
+            try{
+                 reader = new Scanner(new File(filename));
+                 while(reader.hasNextLine()){
+
+                     String line = reader.nextLine();
+
+                     String[]trimmer =line.split(",");
+
+                     int day = Integer.parseInt(trimmer[0]);
+                     String commodity = trimmer[1];
+                     int profit = Integer.parseInt(trimmer[2]);
+
+                     int commodityindex =-1;
+
+                     for(int j =0;j<commodities.length;j++){
+                         if(commodities[j].equals(commodity)){
+                             commodityindex =j;
+                             break;
+                         }
+
+                     }
+                     if (commodityindex != -1 && day >= 1 && day <= 28) {
+                         profits[i][day - 1][commodityindex] = profit;
+                     }
+
+                 }
+            }catch(Exception e){
+
+            }finally{
+                if(reader!=null){
+                    reader.close();
+                }
+            }
+
+
+
+
+        }
     }
 
     // ======== 10 REQUIRED METHODS (Students fill these) ========
 
     public static String mostProfitableCommodityInMonth(int month) {
-        return "DUMMY"; 
+        return "DUMMY";
     }
 
     public static int totalProfitOnDay(int month, int day) {
@@ -29,32 +76,32 @@ public class Main {
         return 1234;
     }
 
-    public static int bestDayOfMonth(int month) { 
-        return 1234; 
-    }
-    
-    public static String bestMonthForCommodity(String comm) { 
-        return "DUMMY"; 
+    public static int bestDayOfMonth(int month) {
+        return 1234;
     }
 
-    public static int consecutiveLossDays(String comm) { 
-        return 1234; 
-    }
-    
-    public static int daysAboveThreshold(String comm, int threshold) { 
-        return 1234; 
+    public static String bestMonthForCommodity(String comm) {
+        return "DUMMY";
     }
 
-    public static int biggestDailySwing(int month) { 
-        return 1234; 
+    public static int consecutiveLossDays(String comm) {
+        return 1234;
     }
-    
-    public static String compareTwoCommodities(String c1, String c2) { 
-        return "DUMMY is better by 1234"; 
+
+    public static int daysAboveThreshold(String comm, int threshold) {
+        return 1234;
     }
-    
-    public static String bestWeekOfMonth(int month) { 
-        return "DUMMY"; 
+
+    public static int biggestDailySwing(int month) {
+        return 1234;
+    }
+
+    public static String compareTwoCommodities(String c1, String c2) {
+        return "DUMMY is better by 1234";
+    }
+
+    public static String bestWeekOfMonth(int month) {
+        return "DUMMY";
     }
 
     public static void main(String[] args) {
