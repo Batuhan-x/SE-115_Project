@@ -200,7 +200,28 @@ public class Main {
     }
 
     public static int daysAboveThreshold(String comm, int threshold) {
-        return 1234;
+        int commoditycheck =-1;
+        for(int i=0;i<commodities.length;i++){
+            if(comm.equals(commodities[i])){
+                commoditycheck=i;
+                break;
+            }
+        }
+        if(commoditycheck==-1){
+            return -1;
+        }
+        int daycounter=0;
+        for(int i=0;i<months.length;i++) {
+              for (int j = 0; j < 28; j++) {
+                  if(profits[i][j][commoditycheck]>threshold){
+                      daycounter++;
+                  }
+
+
+            }
+        }
+
+        return daycounter;
     }
 
     public static int biggestDailySwing(int month) {
