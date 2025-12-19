@@ -87,11 +87,40 @@ public class Main {
     }
 
     public static int totalProfitOnDay(int month, int day) {
-        return 1234;
+        int sum=0;
+        if(month > 11 || month < 0 || day < 1 || day > 28){
+            return -99999;
+        }
+        for (int i=0;i<commodities.length;i++){
+            sum+=profits[month][day-1][i];
+        }
+
+        return sum;
     }
 
     public static int commodityProfitInRange(String commodity, int from, int to) {
-        return 1234;
+        if ( from < 1 || to> 28 || from > to) {
+            return -99999;
+        }
+        int commoditycheck=-1;
+        for(int i=0;i<commodities.length;i++){
+            if(commodities[i].equals(commodity)){
+                commoditycheck=i;
+                break;
+            }
+        }
+        if(commoditycheck==-1){
+            return -99999;
+        }
+
+        int total=0;
+        for(int i=0;i<months.length;i++){
+            for(int day=from;day<=to;day++){
+                total+=profits[i][day-1][commoditycheck];
+            }
+        }
+
+        return total;
     }
 
     public static int bestDayOfMonth(int month) {
