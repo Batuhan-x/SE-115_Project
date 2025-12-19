@@ -124,7 +124,23 @@ public class Main {
     }
 
     public static int bestDayOfMonth(int month) {
-        return 1234;
+        if(month>11 || month<0){
+            return -1;
+        }
+        int day=0;
+        int maxday=Integer.MIN_VALUE;
+        int sum=0;
+        for(int i=0;i<28;i++){
+            for(int j =0;j<5;j++){
+                sum+=profits[month][i][j];
+            }
+            if(sum>maxday){
+                maxday=sum;
+                day=i+1;
+            }
+            sum=0;
+        }
+        return day;
     }
 
     public static String bestMonthForCommodity(String comm) {
