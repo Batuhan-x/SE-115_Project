@@ -65,7 +65,25 @@ public class Main {
     // ======== 10 REQUIRED METHODS (Students fill these) ========
 
     public static String mostProfitableCommodityInMonth(int month) {
-       return "DUMMY";
+        int totalmax=Integer.MIN_VALUE;
+        int total=0;
+        int com=0;
+        if(month>11 || month<0){
+            return "INVALID_MONTH";
+        } else{
+            for(int i=0;i<commodities.length;i++){
+                for(int j=0;j<profits[month].length;j++) {
+                    total += profits[month][j][i];
+                }
+                if (total>totalmax){
+                    totalmax=total;
+                    com=i;
+                }
+                total=0;
+            }
+        }
+
+        return commodities[com]+" "+totalmax;
     }
 
     public static int totalProfitOnDay(int month, int day) {
