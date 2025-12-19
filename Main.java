@@ -171,7 +171,32 @@ public class Main {
     }
 
     public static int consecutiveLossDays(String comm) {
-        return 1234;
+        int commoditycheck =-1;
+        for(int i=0;i<commodities.length;i++){
+            if(comm.equals(commodities[i])){
+                commoditycheck=i;
+                break;
+            }
+        }
+        if(commoditycheck==-1){
+            return -1;
+        }
+        int consecutiveloss=0;
+        int maxloss=0;
+        for(int i=0;i<months.length;i++){
+            for(int j=0;j<28;j++){
+                if(profits[i][j][commoditycheck]<0){
+                    consecutiveloss++;
+                    if(maxloss<consecutiveloss){
+                        maxloss=consecutiveloss;
+                    }
+                    }else{
+                     consecutiveloss=0;
+                }
+
+            }
+        }
+        return maxloss;
     }
 
     public static int daysAboveThreshold(String comm, int threshold) {
