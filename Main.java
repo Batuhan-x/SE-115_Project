@@ -24,6 +24,7 @@ public class Main {
 
             try{
                  reader = new Scanner(new File(filename));
+                 reader.nextLine();
                  while(reader.hasNextLine()){
 
                      String line = reader.nextLine();
@@ -49,6 +50,7 @@ public class Main {
 
                  }
             }catch(Exception e){
+
 
             }finally{
                 if(reader!=null){
@@ -324,5 +326,7 @@ public class Main {
     public static void main(String[] args) {
         loadData();
         System.out.println("Data loaded – ready for queries");
+        System.out.println(profits[3][0][0]);
+
     }
 }
