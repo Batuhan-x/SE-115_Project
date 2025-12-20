@@ -225,7 +225,32 @@ public class Main {
     }
 
     public static int biggestDailySwing(int month) {
-        return 1234;
+        if(month>11 || month<0) {
+            return -99999;
+        }
+        int totalday=0;
+        int sumday=0;
+        int absoloutedifference =0;
+        for(int j =0;j<commodities.length;j++){
+            sumday+=profits[month][0][j];
+
+        }
+        totalday=sumday;
+        sumday=0;
+
+        for(int i=1;i<28;i++) {
+            for(int j =0;j<commodities.length;j++){
+                sumday+=profits[month][i][j];
+
+            }
+            int diff =Math.abs(sumday-totalday);
+            if (diff>absoloutedifference){
+                absoloutedifference = diff;
+            }
+            totalday=sumday;
+            sumday=0;
+        }
+        return absoloutedifference;
     }
 
     public static String compareTwoCommodities(String c1, String c2) {
