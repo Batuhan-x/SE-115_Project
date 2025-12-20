@@ -289,7 +289,36 @@ public class Main {
     }
 
     public static String bestWeekOfMonth(int month) {
-        return "DUMMY";
+
+        if(month>11 || month<0) {
+            return "INVALID_MONTH";
+        }
+        int Weekmax=Integer.MIN_VALUE;
+        int sumweek=0;
+        int weekcount=0;
+        for(int i=0;i<28;i++){
+            for(int j =0;j<commodities.length;j++){
+                sumweek+=profits[month][i][j];
+            }
+            if((i+1)%7==0){
+                if(sumweek>Weekmax) {
+                    Weekmax = sumweek;
+                    if(i<=6) {
+                        weekcount = 1;
+                    }else if(6<i && i<=13){
+                        weekcount=2;
+                    }else if(13<i && i<=20){
+                        weekcount=3;
+                    } else if (20<i && i<=27) {
+                        weekcount=4;
+                    }
+
+                }
+                sumweek=0;
+            }
+
+        }
+        return "Week "+weekcount;
     }
 
     public static void main(String[] args) {
